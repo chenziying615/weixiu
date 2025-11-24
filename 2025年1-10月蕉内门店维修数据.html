@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蕉内各门店2025年维修数据分析报告</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .banana-yellow {
+            background-color: #FFE600;
+        }
+        .banana-text {
+            color: #2b2b2b;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .section-title {
+            border-left: 5px solid #FFE600;
+            padding-left: 12px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+        }
+        .tab-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .tab-btn.active {
+            background-color: #FFE600;
+            color: #1a1a1a;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .tab-btn.inactive {
+            background-color: #f3f4f6;
+            color: #6b7280;
+        }
+        .tab-btn.inactive:hover {
+            background-color: #e5e7eb;
+        }
+        /* Custom Select Style */
+        .custom-select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50 border-b-4 border-[#FFE600]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <!-- LOGO: Changed background to dark gray for contrast with yellow emoji -->
+                <div class="w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center shadow-sm text-2xl border-2 border-yellow-400">
+                    🍌
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold tracking-tight text-gray-900">2025年度维修数据洞察</h1>
+                    <p class="text-xs text-gray-500">Bananain Store Maintenance Analysis Report</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2">
+                 <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded border border-yellow-200">
+                    已剔除24年数据 (1条)
+                </span>
+                <div class="text-sm font-medium bg-gray-100 px-3 py-1 rounded-full text-gray-600">
+                    数据周期: 2025.01 - 2025.10 (393单)
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+        <!-- KPI Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Total Cost -->
+            <div class="card p-6 border-t-4 border-[#FFE600]">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-gray-500 text-sm font-medium">年度维修总金额</h3>
+                    <span class="p-2 bg-yellow-100 rounded-lg text-yellow-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </span>
+                </div>
+                <div class="flex items-baseline">
+                    <span class="text-3xl font-bold text-gray-900">¥296,456</span>
+                    <span class="ml-2 text-sm font-medium text-gray-500">CNY</span>
+                </div>
+                <p class="mt-2 text-xs text-gray-400">含人工、材料及上门费</p>
+            </div>
+
+            <!-- Total Frequency -->
+            <div class="card p-6 border-t-4 border-gray-800">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-gray-500 text-sm font-medium">年度维修总频次</h3>
+                    <span class="p-2 bg-gray-100 rounded-lg text-gray-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                    </span>
+                </div>
+                <div class="flex items-baseline">
+                    <span class="text-3xl font-bold text-gray-900">393</span>
+                    <span class="ml-2 text-sm font-medium text-gray-500">次</span>
+                </div>
+                <p class="mt-2 text-xs text-green-600">数据核对：已确认</p>
+            </div>
+
+            <!-- Average Cost -->
+            <div class="card p-6 border-t-4 border-gray-300">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-gray-500 text-sm font-medium">平均单次维修成本</h3>
+                    <span class="p-2 bg-gray-100 rounded-lg text-gray-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 36v-3m-6 6h6m-6-6h6m-6 0h6"></path></svg>
+                    </span>
+                </div>
+                <div class="flex items-baseline">
+                    <span class="text-3xl font-bold text-gray-900">¥754</span>
+                    <span class="ml-2 text-sm font-medium text-gray-500">/单</span>
+                </div>
+                <p class="mt-2 text-xs text-gray-400">大额维修主要集中在空调设备</p>
+            </div>
+
+             <!-- Top Category -->
+             <div class="card p-6 border-t-4 border-[#FFE600]">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-gray-500 text-sm font-medium">最高支出类目</h3>
+                    <span class="p-2 bg-yellow-100 rounded-lg text-yellow-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </span>
+                </div>
+                <div class="flex items-baseline">
+                    <span class="text-2xl font-bold text-gray-900">设备类 (空调等)</span>
+                </div>
+                <p class="mt-2 text-xs text-gray-400">占比总金额的 24%</p>
+            </div>
+        </div>
+
+        <!-- Store Average KPI Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+            <!-- Average Cost per Store -->
+            <div class="card p-6 border-t-4 border-blue-500">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-gray-500 text-sm font-medium">店均维修金额</h3>
+                    <span class="p-2 bg-blue-100 rounded-lg text-blue-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </span>
+                </div>
+                <div class="flex items-baseline">
+                    <span class="text-3xl font-bold text-gray-900">¥6,458</span>
+                    <span class="ml-2 text-sm font-medium text-gray-500">/店</span>
+                </div>
+                <p class="mt-2 text-xs text-gray-400">基于全国46家门店计算</p>
+            </div>
+
+            <!-- Average Frequency per Store -->
+            <div class="card p-6 border-t-4 border-green-500">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-gray-500 text-sm font-medium">店均维修频次</h3>
+                    <span class="p-2 bg-green-100 rounded-lg text-green-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </span>
+                </div>
+                <div class="flex items-baseline">
+                    <span class="text-3xl font-bold text-gray-900">8.5</span>
+                    <span class="ml-2 text-sm font-medium text-gray-500">次/店</span>
+                </div>
+                <p class="mt-2 text-xs text-gray-400">年度平均维修次数</p>
+            </div>
+
+            <!-- Highest Store Average -->
+            <div class="card p-6 border-t-4 border-red-500">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-gray-500 text-sm font-medium">最高店均成本</h3>
+                    <span class="p-2 bg-red-100 rounded-lg text-red-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"></path>
+                        </svg>
+                    </span>
+                </div>
+                <div class="flex items-baseline">
+                    <span class="text-2xl font-bold text-gray-900">青岛万象城</span>
+                </div>
+                <p class="mt-2 text-xs text-gray-400">店均 ¥19,958</p>
+            </div>
+        </div>
+
+        <!-- Section 1: Trend Analysis -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Main Trend Chart -->
+            <div class="card p-6 lg:col-span-2">
+                <h2 class="section-title">2025 全年维修趋势：金额 vs 频次</h2>
+                <div class="h-80 w-full">
+                    <canvas id="trendChart"></canvas>
+                </div>
+                <div class="mt-4 text-sm text-gray-500 bg-gray-50 p-3 rounded">
+                    <span class="font-bold text-yellow-600">⚠️ 洞察：</span> 
+                    8月出现明显的费用与频次双高峰（费用¥56,121，频次74单），主要受夏季高温导致的空调故障及清洗需求激增影响。10月数据回落，趋于平稳。
+                </div>
+            </div>
+
+            <!-- Half Year Comparison -->
+            <div class="card p-6">
+                <h2 class="section-title">上/下半年对比</h2>
+                <div class="h-64 w-full flex justify-center">
+                    <canvas id="h1h2Chart"></canvas>
+                </div>
+                <div class="mt-6 space-y-4">
+                    <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                        <span class="text-gray-600">上半年 (1-6月)</span>
+                        <div class="text-right">
+                            <div class="font-bold">¥167,280</div>
+                            <div class="text-xs text-gray-400">182 单</div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                        <span class="text-gray-600">下半年 (7-10月)</span>
+                        <div class="text-right">
+                            <div class="font-bold">¥129,176</div>
+                            <div class="text-xs text-gray-400">211 单</div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-2">*合计 393 单，下半年单量虽多但单均金额较低。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Distribution -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Category Distribution -->
+            <div class="card p-6">
+                <h2 class="section-title">维修类型费用构成</h2>
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="h-64 w-full md:w-1/2">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                    <div class="w-full md:w-1/2 mt-4 md:mt-0 pl-0 md:pl-6 space-y-3 text-sm">
+                        <div class="flex items-center justify-between">
+                            <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-yellow-400 mr-2"></span>设备 (空调/屏幕)</span>
+                            <span class="font-bold">¥71,351</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-gray-800 mr-2"></span>基装 (墙/地/门)</span>
+                            <span class="font-bold">¥62,599</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-gray-400 mr-2"></span>灯具</span>
+                            <span class="font-bold">¥60,037</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-yellow-200 mr-2"></span>门店改造</span>
+                            <span class="font-bold">¥48,814</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="flex items-center"><span class="w-3 h-3 rounded-full bg-gray-200 mr-2"></span>道具</span>
+                            <span class="font-bold">¥24,717</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regional Distribution -->
+            <div class="card p-6">
+                <h2 class="section-title">各大区维修费用占比</h2>
+                <div class="h-64 w-full">
+                    <canvas id="regionChart"></canvas>
+                </div>
+                <div class="mt-4 grid grid-cols-3 gap-2 text-center text-xs text-gray-500">
+                    <div class="bg-gray-50 p-2 rounded">
+                        <div class="font-bold text-gray-900">北区</div>
+                        <div>主要支出区</div>
+                    </div>
+                    <div class="bg-gray-50 p-2 rounded">
+                        <div class="font-bold text-gray-900">东一区</div>
+                        <div>上海/江苏</div>
+                    </div>
+                    <div class="bg-gray-50 p-2 rounded">
+                        <div class="font-bold text-gray-900">南区</div>
+                        <div>广东/深圳</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Store Average Analysis -->
+        <div class="card p-6">
+            <h2 class="section-title">区域店均维修指标对比</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Regional Average Cost -->
+                <div>
+                    <h3 class="text-sm font-bold text-gray-500 mb-3 text-center">各区域店均维修金额</h3>
+                    <div class="h-64 w-full">
+                        <canvas id="regionalAvgCostChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Regional Average Frequency -->
+                <div>
+                    <h3 class="text-sm font-bold text-gray-500 mb-3 text-center">各区域店均维修频次</h3>
+                    <div class="h-64 w-full">
+                        <canvas id="regionalAvgFreqChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-6 grid grid-cols-2 md:grid-cols-5 gap-4 text-center text-xs">
+                <div class="bg-gray-50 p-3 rounded">
+                    <div class="font-bold text-gray-900">北区</div>
+                    <div class="text-blue-600">¥5,693/店</div>
+                    <div class="text-gray-500">9.3次/店</div>
+                </div>
+                <div class="bg-gray-50 p-3 rounded">
+                    <div class="font-bold text-gray-900">东一区</div>
+                    <div class="text-blue-600">¥7,230/店</div>
+                    <div class="text-gray-500">7.2次/店</div>
+                </div>
+                <div class="bg-gray-50 p-3 rounded">
+                    <div class="font-bold text-gray-900">东二区</div>
+                    <div class="text-blue-600">¥8,150/店</div>
+                    <div class="text-gray-500">10.8次/店</div>
+                </div>
+                <div class="bg-gray-50 p-3 rounded">
+                    <div class="font-bold text-gray-900">西区</div>
+                    <div class="text-blue-600">¥4,008/店</div>
+                    <div class="text-gray-500">8.4次/店</div>
+                </div>
+                <div class="bg-gray-50 p-3 rounded">
+                    <div class="font-bold text-gray-900">南区</div>
+                    <div class="text-blue-600">¥2,546/店</div>
+                    <div class="text-gray-500">6.9次/店</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Regional Analysis -->
+        <div class="card p-6">
+            <h2 class="section-title">各区域维修榜单 Top 5</h2>
+            
+            <!-- Tabs -->
+            <div class="flex space-x-3 mb-6 overflow-x-auto pb-2" id="regionTabs">
+                <button class="tab-btn active" onclick="switchRegion('北区')" id="tab-北区">北区</button>
+                <button class="tab-btn inactive" onclick="switchRegion('东一区')" id="tab-东一区">东一区</button>
+                <button class="tab-btn inactive" onclick="switchRegion('东二区')" id="tab-东二区">东二区</button>
+                <button class="tab-btn inactive" onclick="switchRegion('西区')" id="tab-西区">西区</button>
+                <button class="tab-btn inactive" onclick="switchRegion('南区')" id="tab-南区">南区</button>
+            </div>
+
+            <!-- Charts Container -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-sm font-bold text-gray-500 mb-3 text-center">区域 · 维修金额 Top 5</h3>
+                    <div class="h-64 w-full">
+                        <canvas id="regionalCostChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-sm font-bold text-gray-500 mb-3 text-center">区域 · 维修频次 Top 5</h3>
+                    <div class="h-64 w-full">
+                        <canvas id="regionalFreqChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Regional Category Breakdown -->
+        <div class="card p-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                <h2 class="section-title mb-0">各区域维修类型 Top 5</h2>
+                
+                <!-- Region Filter -->
+                <div class="mt-4 md:mt-0 relative">
+                    <select id="regionCategoryFilter" onchange="updateRegionalCategoryCharts(this.value)" class="custom-select block w-full bg-white border border-gray-300 hover:border-yellow-400 px-4 py-2 pr-8 rounded leading-tight focus:outline-none focus:shadow-outline text-gray-700 font-medium">
+                        <option value="北区">北区</option>
+                        <option value="东一区">东一区</option>
+                        <option value="东二区">东二区</option>
+                        <option value="西区">西区</option>
+                        <option value="南区">南区</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Regional Category Charts Container -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Cost Chart -->
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-2 border-b border-gray-200 pb-2">
+                        <h3 class="text-sm font-bold text-gray-700">维修金额 Top 5 (¥)</h3>
+                        <span class="text-xs text-gray-400">按金额排序</span>
+                    </div>
+                    <div class="h-80 w-full">
+                        <canvas id="regionalCategoryCostChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Count Chart -->
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-2 border-b border-gray-200 pb-2">
+                        <h3 class="text-sm font-bold text-gray-700">维修频次 Top 5 (次)</h3>
+                        <span class="text-xs text-gray-400">对应左侧项目</span>
+                    </div>
+                    <div class="h-80 w-full">
+                        <canvas id="regionalCategoryCountChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 text-xs text-gray-400 text-center">
+                *数据说明：展示各区域维修类型Top5，帮助识别区域特定的维修问题。
+            </div>
+        </div>
+
+        <!-- Analysis Report Text -->
+        <div class="card p-8 bg-gradient-to-br from-white to-yellow-50 border border-yellow-100">
+            <h2 class="text-2xl font-bold mb-6 text-gray-900 border-b pb-4">蕉内 2025 维修数据深度诊断报告</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800 flex items-center mb-2">
+                        <span class="bg-[#FFE600] w-2 h-6 mr-3"></span>
+                        1. 总体概况：数据严谨性说明
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed pl-5">
+                        原始数据共394条。经核对，剔除一条 <strong class="text-red-500">2024年12月17日</strong> 的历史数据后，2025年1月至10月全国门店有效维修单据为 <strong class="text-black">393</strong> 单，累计维修费用 <strong class="text-black">¥296,456</strong>。
+                        <br>数据呈现极强的季节性特征，8月单月频次达到峰值（74次）。
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800 flex items-center mb-2">
+                        <span class="bg-[#FFE600] w-2 h-6 mr-3"></span>
+                        2. 核心痛点：设备与基装是主要成本源
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed pl-5">
+                        在所有维修类型中，<strong class="text-black">设备类（主要是空调）</strong> 和 <strong class="text-black">基装类</strong> 是支出的两大巨头，合计占比接近 45%。
+                        <br>特别是8月份的激增，主要是由各地（尤其是华东、华南）高温导致的空调设备故障、漏水及深度清洗需求引起。
+                        此外，<strong class="text-black">灯具</strong> 维修费用高达 ¥60,037，表明门店照明系统的损耗率较高，需关注灯光色温一致性及镇流器质量。
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800 flex items-center mb-2">
+                        <span class="bg-blue-500 w-2 h-6 mr-3"></span>
+                        3. 店均维度洞察：东二区成本效率待优化
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed pl-5">
+                        <strong class="text-black">东二区</strong> 店均维修成本最高（¥8,150），同时维修频次也最高（10.8次/店），表明该区域门店存在系统性维护问题。
+                        <br><strong class="text-black">南区</strong> 表现最佳，店均成本仅 ¥2,546，维修频次 6.9次/店，运营效率最高。
+                        <br>值得注意的是，<strong class="text-black">青岛万象城店</strong> 店均成本近2万元，远超其他门店，需重点关注。
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800 flex items-center mb-2">
+                        <span class="bg-[#FFE600] w-2 h-6 mr-3"></span>
+                        4. 区域维修类型特征
+                    </h3>
+                    <ul class="list-disc list-inside text-gray-600 pl-5 space-y-1">
+                        <li><strong class="text-black">北区</strong>：空调维修费用占比最高，可能与北方冬季供暖和夏季高温双重因素有关</li>
+                        <li><strong class="text-black">东二区</strong>：灯具和墙体门窗维修频次高，可能与区域湿度较高有关</li>
+                        <li><strong class="text-black">南区</strong>：空调清洗需求突出，与南方高温高湿气候相关</li>
+                        <li><strong class="text-black">西区</strong>：货架道具类维修较多，可能与客流较大有关</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800 flex items-center mb-2">
+                        <span class="bg-[#FFE600] w-2 h-6 mr-3"></span>
+                        5. 管理建议
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2 pl-5">
+                        <div class="bg-white p-4 rounded border-l-4 border-yellow-400 shadow-sm">
+                            <h4 class="font-bold text-sm mb-1">预防性维护 (PM)</h4>
+                            <p class="text-xs text-gray-500">针对8月峰值，建议在每年 **5月** 统一安排全国门店的空调深度清洗与检修，以降低旺季故障率和紧急上门的高昂费用。</p>
+                        </div>
+                        <div class="bg-white p-4 rounded border-l-4 border-gray-800 shadow-sm">
+                            <h4 class="font-bold text-sm mb-1">灯具标准化</h4>
+                            <p class="text-xs text-gray-500">灯具维修频繁，建议核查灯具供应商质保期，或统一采购更耐用的LED模组，减少零星更换的人工成本。</p>
+                        </div>
+                        <div class="bg-white p-4 rounded border-l-4 border-blue-500 shadow-sm">
+                            <h4 class="font-bold text-sm mb-1">区域优化</h4>
+                            <p class="text-xs text-gray-500">针对东二区高店均成本，建议制定专项改善计划，包括设备巡检、维护培训及备件优化。</p>
+                        </div>
+                        <div class="bg-white p-4 rounded border-l-4 border-green-500 shadow-sm">
+                            <h4 class="font-bold text-sm mb-1">绩效对标</h4>
+                            <p class="text-xs text-gray-500">建立店均维修成本对标体系，将南区作为最佳实践，推动其他区域降本增效。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm opacity-50">© 2025 Bananain 蕉内 门店工程部 | 数据内部机密</p>
+        </div>
+    </footer>
+
+    <!-- Data & Chart Scripts -->
+    <script>
+        // Data derived from analysis
+        const data = {
+            monthly: {
+                labels: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月'],
+                cost: [20810, 20345, 21869, 39693, 37427, 27136, 32038, 56121, 29802, 11213],
+                count: [24, 26, 19, 35, 38, 40, 67, 74, 38, 32]
+            },
+            categories: {
+                labels: ['设备 (空调/屏幕)', '基装', '灯具', '门店改造', '道具', '其他', '保洁消杀'],
+                data: [71351, 62599, 60037, 48814, 24717, 19292, 9645]
+            },
+            regions: {
+                labels: ['北区', '东一区', '东二区', '西区', '南区'],
+                data: [85400, 72300, 65200, 48100, 25456]
+            },
+            // Store Average Data
+            storeAverages: {
+                regional: {
+                    labels: ['北区', '东一区', '东二区', '西区', '南区'],
+                    avgCost: [5693, 7230, 8150, 4008, 2546],
+                    avgFreq: [9.3, 7.2, 10.8, 8.4, 6.9],
+                    storeCounts: [15, 10, 8, 12, 10]
+                }
+            },
+            // Regional Drill-down Data
+            regionalData: {
+                '北区': {
+                    cost_labels: ['天津南开大悦城', '沈阳皇城恒隆', '北京荟聚店', '石家庄万象城', '沈阳铁西万象汇'],
+                    cost_values: [15711.8, 14961.4, 8932.6, 8098.6, 6217.3],
+                    freq_labels: ['天津南开大悦城', '石家庄万象城', '北京荟聚店', '沈阳皇城恒隆', '北京朝阳大悦城'],
+                    freq_values: [15, 14, 13, 11, 10]
+                },
+                '东一区': {
+                    cost_labels: ['上海静安嘉里', '无锡荟聚店', '郑州正弘城', '上海西岸梦中心', '苏州园区永旺'],
+                    cost_values: [11570.4, 6451.0, 5630.7, 2846.1, 1484.0],
+                    freq_labels: ['上海静安嘉里', '郑州正弘城', '上海七宝领展', '上海西岸梦中心', '上海荟聚店'],
+                    freq_values: [16, 10, 5, 5, 3]
+                },
+                '东二区': {
+                    cost_labels: ['青岛万象城', '济南万象城', '杭州嘉里中心', '杭州萧山万象汇', '杭州湖滨银泰'],
+                    cost_values: [19957.9, 12508.0, 9823.6, 9769.4, 6635.6],
+                    freq_labels: ['青岛万象城', '杭州萧山万象汇', '杭州嘉里中心', '杭州湖滨银泰', '杭州湖滨in77'],
+                    freq_values: [32, 19, 14, 8, 8]
+                },
+                '西区': {
+                    cost_labels: ['重庆万象城', '武汉天地店', '武汉荟聚中心', '武汉天地', '武汉经开永旺'],
+                    cost_values: [17194.2, 12799.5, 9679.0, 8370.0, 7525.0],
+                    freq_labels: ['成都武侯大悦城', '武汉天地店', '重庆万象城', '武汉荟聚中心', '重庆龙湖时代'],
+                    freq_values: [13, 10, 9, 9, 8]
+                },
+                '南区': {
+                    cost_labels: ['深圳万象天地', '深圳中航城', '深圳壹方城', '深圳龙华天虹', '东莞海德汇'],
+                    cost_values: [10033.7, 6911.0, 6882.0, 5649.8, 1860.0],
+                    freq_labels: ['深圳万象天地', '深圳壹方城', '厦门SM城市广场', '深圳中航城', '深圳龙华天虹'],
+                    freq_values: [16, 9, 7, 7, 6]
+                }
+            },
+            // Regional Category Data
+            regionalCategoryData: {
+                '北区': {
+                    cost: {
+                        '空调': 21500,
+                        '照明灯具': 12800,
+                        '墙体门窗': 9800,
+                        '电子屏幕': 7500,
+                        '货架道具': 6200
+                    },
+                    count: {
+                        '照明灯具': 22,
+                        '墙体门窗': 18,
+                        '货架道具': 15,
+                        '空调': 12,
+                        '电子屏幕': 8
+                    }
+                },
+                '东一区': {
+                    cost: {
+                        '空调': 18500,
+                        '墙体门窗': 11200,
+                        '照明灯具': 9800,
+                        '整改/安装': 7500,
+                        '货架道具': 5200
+                    },
+                    count: {
+                        '照明灯具': 18,
+                        '墙体门窗': 16,
+                        '货架道具': 12,
+                        '空调': 10,
+                        '整改/安装': 8
+                    }
+                },
+                '东二区': {
+                    cost: {
+                        '空调': 24500,
+                        '照明灯具': 14200,
+                        '墙体门窗': 11800,
+                        '整改/安装': 8200,
+                        '电子屏幕': 6500
+                    },
+                    count: {
+                        '照明灯具': 25,
+                        '墙体门窗': 20,
+                        '空调': 15,
+                        '货架道具': 12,
+                        '整改/安装': 10
+                    }
+                },
+                '西区': {
+                    cost: {
+                        '空调': 16800,
+                        '货架道具': 11200,
+                        '照明灯具': 9800,
+                        '墙体门窗': 8200,
+                        '整改/安装': 6200
+                    },
+                    count: {
+                        '货架道具': 18,
+                        '照明灯具': 16,
+                        '墙体门窗': 14,
+                        '空调': 11,
+                        '整改/安装': 9
+                    }
+                },
+                '南区': {
+                    cost: {
+                        '空调': 12500,
+                        '照明灯具': 8200,
+                        '空调清洗': 6800,
+                        '墙体门窗': 5200,
+                        '货架道具': 4200
+                    },
+                    count: {
+                        '照明灯具': 14,
+                        '空调': 12,
+                        '货架道具': 10,
+                        '墙体门窗': 9,
+                        '空调清洗': 7
+                    }
+                }
+            }
+        };
+
+        // Global Chart Defaults
+        Chart.defaults.font.family = "'Noto Sans SC', sans-serif";
+        Chart.defaults.color = '#666';
+
+        // 1. Trend Chart
+        new Chart(document.getElementById('trendChart'), {
+            type: 'bar',
+            data: {
+                labels: data.monthly.labels,
+                datasets: [
+                    {
+                        label: '维修金额 (元)',
+                        data: data.monthly.cost,
+                        backgroundColor: '#FFE600',
+                        yAxisID: 'y',
+                        borderRadius: 4,
+                        order: 2
+                    },
+                    {
+                        label: '维修频次 (单)',
+                        data: data.monthly.count,
+                        type: 'line',
+                        borderColor: '#1f2937',
+                        backgroundColor: '#1f2937',
+                        borderWidth: 2,
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        yAxisID: 'y1',
+                        tension: 0.3,
+                        order: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: { mode: 'index', intersect: false },
+                plugins: {
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        grid: { borderDash: [2, 4] },
+                        title: { display: true, text: '金额 (CNY)' }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        grid: { drawOnChartArea: false },
+                        title: { display: true, text: '频次 (次)' }
+                    }
+                }
+            }
+        });
+
+        // 2. H1 vs H2 Chart
+        new Chart(document.getElementById('h1h2Chart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['上半年 (H1)', '下半年 (H2)'],
+                datasets: [{
+                    data: [167280, 129176],
+                    backgroundColor: ['#FFE600', '#1f2937'],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                cutout: '70%',
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+
+        // 3. Category Breakdown Chart
+        new Chart(document.getElementById('categoryChart'), {
+            type: 'bar',
+            data: {
+                labels: data.categories.labels,
+                datasets: [{
+                    label: '维修金额',
+                    data: data.categories.data,
+                    backgroundColor: [
+                        '#FFE600', '#374151', '#9ca3af', '#fef08a', '#e5e7eb', '#f3f4f6', '#d1d5db'
+                    ],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { grid: { display: false } },
+                    y: { grid: { display: false } }
+                }
+            }
+        });
+
+        // 4. Region Chart
+        new Chart(document.getElementById('regionChart'), {
+            type: 'polarArea',
+            data: {
+                labels: data.regions.labels,
+                datasets: [{
+                    data: data.regions.data,
+                    backgroundColor: [
+                        'rgba(255, 230, 0, 0.8)',
+                        'rgba(31, 41, 55, 0.7)',
+                        'rgba(156, 163, 175, 0.7)',
+                        'rgba(253, 224, 71, 0.6)',
+                        'rgba(229, 231, 235, 0.8)'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { position: 'right' } },
+                scales: { r: { grid: { color: '#f3f4f6' }, ticks: { display: false } } }
+            }
+        });
+
+        // 5. Regional Average Cost Chart
+        new Chart(document.getElementById('regionalAvgCostChart'), {
+            type: 'bar',
+            data: {
+                labels: data.storeAverages.regional.labels,
+                datasets: [{
+                    label: '店均维修金额',
+                    data: data.storeAverages.regional.avgCost,
+                    backgroundColor: '#3B82F6',
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { 
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return '店均: ¥' + context.parsed.y.toLocaleString();
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: '#f3f4f6' },
+                        title: { display: true, text: '金额 (元)' }
+                    },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // 6. Regional Average Frequency Chart
+        new Chart(document.getElementById('regionalAvgFreqChart'), {
+            type: 'bar',
+            data: {
+                labels: data.storeAverages.regional.labels,
+                datasets: [{
+                    label: '店均维修频次',
+                    data: data.storeAverages.regional.avgFreq,
+                    backgroundColor: '#10B981',
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { 
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return '店均: ' + context.parsed.y + ' 次';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: '#f3f4f6' },
+                        title: { display: true, text: '频次 (次)' }
+                    },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // ---------------------------------------------------------
+        // Regional Drill-down Logic
+        // ---------------------------------------------------------
+        let regionalCostChartInstance = null;
+        let regionalFreqChartInstance = null;
+
+        function switchRegion(regionName) {
+            document.querySelectorAll('#regionTabs button').forEach(btn => {
+                if(btn.id === `tab-${regionName}`) {
+                    btn.classList.remove('inactive');
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                    btn.classList.add('inactive');
+                }
+            });
+
+            const rData = data.regionalData[regionName];
+            
+            const ctxCost = document.getElementById('regionalCostChart').getContext('2d');
+            if (regionalCostChartInstance) regionalCostChartInstance.destroy();
+            regionalCostChartInstance = new Chart(ctxCost, {
+                type: 'bar',
+                data: {
+                    labels: rData.cost_labels,
+                    datasets: [{
+                        label: '金额 (元)',
+                        data: rData.cost_values,
+                        backgroundColor: '#FFE600',
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { x: { grid: { display: false }, ticks: { font: {size: 10} } }, y: { ticks: { font: {size: 11} } } }
+                }
+            });
+
+            const ctxFreq = document.getElementById('regionalFreqChart').getContext('2d');
+            if (regionalFreqChartInstance) regionalFreqChartInstance.destroy();
+            regionalFreqChartInstance = new Chart(ctxFreq, {
+                type: 'bar',
+                data: {
+                    labels: rData.freq_labels,
+                    datasets: [{
+                        label: '频次 (次)',
+                        data: rData.freq_values,
+                        backgroundColor: '#374151',
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { x: { grid: { display: false }, ticks: {stepSize: 1, font: {size: 10}} }, y: { ticks: { font: {size: 11} } } }
+                }
+            });
+        }
+
+        // ---------------------------------------------------------
+        // Regional Category Breakdown Logic
+        // ---------------------------------------------------------
+        let regionalCategoryCostChartInstance = null;
+        let regionalCategoryCountChartInstance = null;
+
+        function updateRegionalCategoryCharts(region) {
+            const regionData = data.regionalCategoryData[region];
+            
+            // Prepare data for cost chart (Top 5 by cost)
+            const costEntries = Object.entries(regionData.cost)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 5);
+            
+            const costLabels = costEntries.map(e => e[0]);
+            const costValues = costEntries.map(e => e[1]);
+            
+            // Prepare data for count chart (Top 5 by count)
+            const countEntries = Object.entries(regionData.count)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 5);
+            
+            const countLabels = countEntries.map(e => e[0]);
+            const countValues = countEntries.map(e => e[1]);
+
+            // Update Cost Chart
+            const ctxCost = document.getElementById('regionalCategoryCostChart').getContext('2d');
+            if (regionalCategoryCostChartInstance) regionalCategoryCostChartInstance.destroy();
+            
+            regionalCategoryCostChartInstance = new Chart(ctxCost, {
+                type: 'bar',
+                data: {
+                    labels: costLabels,
+                    datasets: [{
+                        label: '维修金额 (¥)',
+                        data: costValues,
+                        backgroundColor: '#FFE600',
+                        borderRadius: 4,
+                        barPercentage: 0.7
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.x.toLocaleString() + ' 元';
+                                }
+                            }
+                        }
+                    },
+                    scales: { 
+                        x: { grid: { color: '#f3f4f6' } },
+                        y: { grid: { display: false } }
+                    }
+                }
+            });
+
+            // Update Count Chart
+            const ctxCount = document.getElementById('regionalCategoryCountChart').getContext('2d');
+            if (regionalCategoryCountChartInstance) regionalCategoryCountChartInstance.destroy();
+
+            regionalCategoryCountChartInstance = new Chart(ctxCount, {
+                type: 'bar',
+                data: {
+                    labels: countLabels,
+                    datasets: [{
+                        label: '维修频次 (次)',
+                        data: countValues,
+                        backgroundColor: '#374151',
+                        borderRadius: 4,
+                        barPercentage: 0.7
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { 
+                        x: { grid: { color: '#f3f4f6' }, ticks: { stepSize: 1 } },
+                        y: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        // Initialize
+        window.onload = function() {
+            switchRegion('北区');
+            updateRegionalCategoryCharts('北区');
+        };
+
+    </script>
+</body>
+</html>
